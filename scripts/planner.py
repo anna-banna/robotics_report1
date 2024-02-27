@@ -16,9 +16,9 @@ if __name__ == '__main__':
 	loop_rate = rospy.Rate(10)
 s
 	# define a plan variable
-	plan = Plan()s
-	plan_point1 = Twist()
+	plan = Plan()
 	
+	plan_point1 = Twist()
 	# just a quick solution to send two target points
 	# define a point close to the initial position
 	plan_point1.linear.x = -0.7924762782588125
