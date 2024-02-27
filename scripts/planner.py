@@ -26,7 +26,7 @@ s
 	plan_point1.linear.y = -0.13300178332221238
 	plan_point1.linear.z = 0.36339685365301155
 	plan_point1.angular.x = 3.1415622780010195
-	plan_point1.angular.y = -3.0205863424366773e-07
+	plan_point1.angular.y = 0
 	plan_point1.angular.z = 1.5704225518606048
 	# add this point to the plan
 	plan.points.append(plan_point1)
@@ -37,7 +37,7 @@ s
 	plan_point2.linear.y = -0.13300178332221238
 	plan_point2.linear.z = 0.05
 	plan_point2.angular.x = 3.1415622780010195
-	plan_point2.angular.y = -3.0205863424366773e-07
+	plan_point2.angular.y = 0
 	plan_point2.angular.z = 1.5704225518
 	# add this point to the plan
 	plan.points.append(plan_point2)
