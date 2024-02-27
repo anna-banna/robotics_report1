@@ -19,6 +19,7 @@ s
 	plan = Plan()
 	
 	plan_point1 = Twist()
+
 	# just a quick solution to send two target points
 	# define a point close to the initial position
 	plan_point1.linear.x = -0.7924762782588125
@@ -32,12 +33,23 @@ s
 	
 	plan_point2 = Twist()
 	# define a point away from the initial position
-	plan_point2.linear.x = -0.6
-	plan_point2.linear.y = -0.23
-	plan_point2.linear.z = 0.25
-	plan_point2.angular.x = 1.57
-	plan_point2.angular.y = 0.0
-	plan_point2.angular.z = 0.0
+	plan_point2.linear.x = -0.7924762782588125
+	plan_point2.linear.y = -0.13300178332221238
+	plan_point2.linear.z = 0.05
+	plan_point2.angular.x = 3.1415622780010195
+	plan_point2.angular.y = -3.0205863424366773e-07
+	plan_point2.angular.z = 1.5704225518
+	# add this point to the plan
+	plan.points.append(plan_point2)
+	
+	plan_point3 = Twist()
+	# define a point away from the initial position
+	plan_point3.linear.x = -0.7924762782588125
+	plan_point3.linear.y = -0.13300178332221238
+	plan_point3.linear.z = 0.36339685365301155
+	plan_point3.angular.x = 3.1415622780010195
+	plan_point3.angular.y = -3.0205863424366773e-07
+	plan_point3.angular.z = 1.5704225518
 	# add this point to the plan
 	plan.points.append(plan_point2)
 
