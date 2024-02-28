@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	plan_pub = rospy.Publisher('/plan', Plan, queue_size = 10)
 	# set a 10Hz frequency for this loop
 	loop_rate = rospy.Rate(10)
-s
+
 	# define a plan variable
 	plan = Plan()
 	
@@ -35,7 +35,7 @@ s
 	# define a point away from the initial position
 	plan_point2.linear.x = -0.7924762782588125
 	plan_point2.linear.y = -0.13300178332221238
-	plan_point2.linear.z = 0.05
+	plan_point2.linear.z = 0
 	plan_point2.angular.x = 3.1415622780010195
 	plan_point2.angular.y = 0
 	plan_point2.angular.z = 1.5704225518
@@ -44,14 +44,25 @@ s
 	
 	plan_point3 = Twist()
 	# define a point away from the initial position
-	plan_point3.linear.x = -0.7924762782588125
-	plan_point3.linear.y = -0.13300178332221238
-	plan_point3.linear.z = 0.36339685365301155
-	plan_point3.angular.x = 3.1415622780010195
-	plan_point3.angular.y = -3.0205863424366773e-07
-	plan_point3.angular.z = 1.5704225518
+	plan_point3.linear.x = -0.6729824076546461
+	plan_point3.linear.y = 0.44900210793214634
+	plan_point3.linear.z = 0.3501420732273582
+	plan_point3.angular.x = 3.1079287284912613
+	plan_point3.angular.y = 0
+	plan_point3.angular.z = math.pi/4
 	# add this point to the plan
-	plan.points.append(plan_point2)
+	plan.points.append(plan_point3)
+	
+	plan_point4 = Twist()
+	# define a point away from the initial position
+	plan_point4.linear.x = -0.6729824076546461
+	plan_point4.linear.y = 0.44900210793214634
+	plan_point4.linear.z = 0
+	plan_point4.angular.x = 3.1079287284912613
+	plan_point4.angular.y = 0
+	plan_point4.angular.z = math.pi/4
+	# add this point to the plan
+	plan.points.append(plan_point4)
 
 	
 	
