@@ -1,3 +1,4 @@
+#ORIGINAL CODE FROM DR. H. SAEIDI WITH ADDITIONS AT LINE 42-45
 #!/usr/bin/env python3
 
 import rospy
@@ -10,17 +11,17 @@ from std_msgs.msg import Header
 
 
 if __name__ == '__main__':
-	# initialize the node
-	rospy.init_node('manual_initialization', anonymous = True)
-	# add a publisher for sending joint position commands
+	# initialize node
+	rospy.init_node('report_manual_initialization', anonymous = True)
+	# add publisher for sending joint position commands
 	pos_pub = rospy.Publisher('/pos_joint_traj_controller/command', JointTrajectory, queue_size = 10)
-	# set a 10Hz frequency for this loop
+	# set frequency for loop
 	loop_rate = rospy.Rate(10)
 
 	# define a joint trajectory variable for sending the control commands
 	pos_cmd = JointTrajectory()
 	pos_cmd_point = JointTrajectoryPoint()
-	# just a quick solution to complete the message template
+	# complete message template
 	pos_cmd.joint_names.append('elbow_joint')
 	pos_cmd.joint_names.append('shoulder_lift_joint')
 	pos_cmd.joint_names.append('shoulder_pan_joint')
@@ -33,9 +34,9 @@ if __name__ == '__main__':
 		pos_cmd_point.positions.append(0.0)
 	# set the ideal time to destination
 	pos_cmd_point.time_from_start = rospy.Duration(1.0) # here one second 
-	# just change the value of the command for the second joint
+	# change the value of the command for the second joint
 	pos_cmd_point.positions[1] = -math.pi/4
-	# just change the value of the command for the elbow joint
+	# change the value of the command for the elbow joint
 	pos_cmd_point.positions[0] = math.pi/4
 	
 	# change value of the command for the wrist joint 
@@ -43,15 +44,14 @@ if __name__ == '__main__':
 	#change value of the command for the other wrist joint
 	pos_cmd_point.positions[4] = -math.pi/2
 	
-	# add the trajectory point to the command
+	# add the trajectory point to command
 	pos_cmd.points.append(pos_cmd_point)
-	# define a message header	
+	# define message header	
 	header = Header()
 	
 	while not rospy.is_shutdown():
-		# update the header with the most recent time stamp
+		# update header with the most recent time stamp
 		header.stamp = rospy.Time.now()
-		# use the most recent header in the position command message
 		pos_cmd.header = header
 		# publish the message
 		pos_pub.publish(pos_cmd)
