@@ -1,27 +1,28 @@
+##ORIGINAL CODE FROM DR. H. SAEIDI WITH ADDITIONS PLAN_POINT3/4
 #!/usr/bin/env python3
 
 import rospy
 import math
 
-# import the plan message
+# import needed messages
 from ur5e_control.msg import Plan
 from geometry_msgs.msg import Twist
 
 if __name__ == '__main__':
 	# initialize the node
-	rospy.init_node('simple_planner', anonymous = True)
+	rospy.init_node('planner', anonymous = True)
 	# add a publisher for sending joint position commands
 	plan_pub = rospy.Publisher('/plan', Plan, queue_size = 10)
-	# set a 10Hz frequency for this loop
+	# set frequency for loop
 	loop_rate = rospy.Rate(10)
 
-	# define a plan variable
+	# define plan variable
 	plan = Plan()
-	
+	# define twist variable for first point 
 	plan_point1 = Twist()
 
-	# just a quick solution to send two target points
-	# define a point close to the initial position
+	# use rostopic echo /ur5e/toolpose to get linear and angular values
+	# for safe initial position 
 	plan_point1.linear.x = -0.7924762782588125
 	plan_point1.linear.y = -0.13300178332221238
 	plan_point1.linear.z = 0.36339685365301155
@@ -30,9 +31,10 @@ if __name__ == '__main__':
 	plan_point1.angular.z = 1.5704225518606048
 	# add this point to the plan
 	plan.points.append(plan_point1)
-	
+
+	# define twist variable for second point
 	plan_point2 = Twist()
-	# define a point away from the initial position
+	# define a point under the initial position to pick up object
 	plan_point2.linear.x = -0.7924762782588125
 	plan_point2.linear.y = -0.13300178332221238
 	plan_point2.linear.z = 0
@@ -41,9 +43,10 @@ if __name__ == '__main__':
 	plan_point2.angular.z = 1.5704225518
 	# add this point to the plan
 	plan.points.append(plan_point2)
-	
+
+	# define twist variable for third point
 	plan_point3 = Twist()
-	# define a point away from the initial position
+	# define above the target position
 	plan_point3.linear.x = -0.6729824076546461
 	plan_point3.linear.y = 0.44900210793214634
 	plan_point3.linear.z = 0.3501420732273582
@@ -52,9 +55,10 @@ if __name__ == '__main__':
 	plan_point3.angular.z = math.pi/4
 	# add this point to the plan
 	plan.points.append(plan_point3)
-	
+
+	# define twist variable for fourth point
 	plan_point4 = Twist()
-	# define a point away from the initial position
+	# define a point as the target postion
 	plan_point4.linear.x = -0.6729824076546461
 	plan_point4.linear.y = 0.44900210793214634
 	plan_point4.linear.z = 0
