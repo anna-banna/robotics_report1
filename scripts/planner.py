@@ -37,7 +37,7 @@ if __name__ == '__main__':
 	# define a point under the initial position to pick up object
 	plan_point2.linear.x = -0.7924762782588125
 	plan_point2.linear.y = -0.13300178332221238
-	plan_point2.linear.z = 0
+	plan_point2.linear.z = 0.1
 	plan_point2.angular.x = 3.1415622780010195
 	plan_point2.angular.y = 0
 	plan_point2.angular.z = 1.5704225518
@@ -50,7 +50,7 @@ if __name__ == '__main__':
 	plan_point3.linear.x = -0.6729824076546461
 	plan_point3.linear.y = 0.44900210793214634
 	plan_point3.linear.z = 0.3501420732273582
-	plan_point3.angular.x = 3.1079287284912613
+	plan_point3.angular.x = 3.1415622780010195
 	plan_point3.angular.y = 0
 	plan_point3.angular.z = math.pi/4
 	# add this point to the plan
@@ -61,8 +61,8 @@ if __name__ == '__main__':
 	# define a point as the target postion
 	plan_point4.linear.x = -0.6729824076546461
 	plan_point4.linear.y = 0.44900210793214634
-	plan_point4.linear.z = 0
-	plan_point4.angular.x = 3.1079287284912613
+	plan_point4.linear.z = 0.1
+	plan_point4.angular.x = 3.1415622780010195
 	plan_point4.angular.y = 0
 	plan_point4.angular.z = math.pi/4
 	# add this point to the plan
