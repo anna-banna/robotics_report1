@@ -3,24 +3,45 @@
 
 import rospy
 import math
+import tf2_ros
+from tf.transformations import * 
+import tf2_geometry_msgs
+from robot_vision_lectures.msg import SphereParams
 
 # import needed messages
 from ur5e_control.msg import Plan
 from geometry_msgs.msg import Twist
+
+pt_in_camera = tf2_geometry_msgs.PointStamped() 
+def getParams(data):
+	global pt_in_camera 
+	pt_in_camera.point.x = data.xc
+	pt_in_camera.point.y = data.yc 
+	pt_in_camera.point.z = data.zc 
 
 if __name__ == '__main__':
 	# initialize the node
 	rospy.init_node('planner', anonymous = True)
 	# add a publisher for sending joint position commands
 	plan_pub = rospy.Publisher('/plan', Plan, queue_size = 10)
+	# subscribe to sphere params 
+	param_sub = rospy.Subscriber("/sphere_params", SphereParams, getParams)
 	# set frequency for loop
 	loop_rate = rospy.Rate(10)
 
 	# define plan variable
 	plan = Plan()
+	
+	
+	tfBuffer = tf2_ros.Buffer()
+	listener = tf2_ros.TransformListener(tfBuffer) 
+	
+	pt_in_camera.header.frame_id = 'camera_color_optical_frame'
+	pt_in_camera.header.stamp = rospy.get_rostime() 
+	pt_in_base = tfBuffer.transform(pt_in_camera, 'base', rospy.Duration(1.0))
+	
 	# define twist variable for first point 
 	plan_point1 = Twist()
-
 	# use rostopic echo /ur5e/toolpose to get linear and angular values
 	# for safe initial position 
 	plan_point1.linear.x = -0.7924762782588125
@@ -31,18 +52,26 @@ if __name__ == '__main__':
 	plan_point1.angular.z = 1.5704225518606048
 	# add this point to the plan
 	plan.points.append(plan_point1)
-
-	# define twist variable for second point
-	plan_point2 = Twist()
-	# define a point under the initial position to pick up object
-	plan_point2.linear.x = -0.7924762782588125
-	plan_point2.linear.y = -0.13300178332221238
-	plan_point2.linear.z = 0.1
-	plan_point2.angular.x = 3.1415622780010195
-	plan_point2.angular.y = 0
-	plan_point2.angular.z = 1.5704225518
-	# add this point to the plan
-	plan.points.append(plan_point2)
+	
+	#define point about ball 
+	above_ball = Twist()
+	above_ball.linear.x = pt_in_base.point.x 
+	above_ball.linear.y = pt_in_base.point.y
+	above_ball.linear.z = 0.36339685365301155 
+	above_ball.angular.x = 3.1415622780010195
+	above_ball.angular.y = 0
+	above_ball.angular.z = 1.5704225518606048
+	plan.points.append(above_ball) 
+	
+	# move to ball 
+	on_ball = Twist()
+	on_ball.linear.x = pt_in_base.point.x 
+	on_ball.linear.y = pt_in_base.point.y
+	on_ball.linear.z = pt_in_base.point.z + 0.01
+	on_ball.angular.x = 3.1415622780010195
+	on_ball.angular.y = 0
+	on_ball.angular.z = 1.5704225518606048
+	plan.points.append(on_ball) 
 
 	# define twist variable for third point
 	plan_point3 = Twist()
