@@ -1,5 +1,5 @@
-##ORIGINAL CODE FROM DR. H. SAEIDI WITH ADDITIONS PLAN_POINT3/4
 #!/usr/bin/env python3
+##ORIGINAL CODE FROM DR. H. SAEIDI WITH ADDITIONS PLAN_POINT3/4
 
 import rospy
 import math
@@ -48,11 +48,11 @@ if __name__ == '__main__':
 	plan_point3 = Twist()
 	# define above the target position
 	plan_point3.linear.x = -0.6729824076546461
-	plan_point3.linear.y = 0.44900210793214634
-	plan_point3.linear.z = 0.3501420732273582
+	plan_point3.linear.y = -0.13300178332221238
+	plan_point3.linear.z = 0.36339685365301155
 	plan_point3.angular.x = 3.1415622780010195
 	plan_point3.angular.y = 0
-	plan_point3.angular.z = math.pi/4
+	plan_point3.angular.z = 1.5704225518
 	# add this point to the plan
 	plan.points.append(plan_point3)
 
@@ -60,11 +60,11 @@ if __name__ == '__main__':
 	plan_point4 = Twist()
 	# define a point as the target postion
 	plan_point4.linear.x = -0.6729824076546461
-	plan_point4.linear.y = 0.44900210793214634
+	plan_point4.linear.y = -0.13300178332221238
 	plan_point4.linear.z = 0.1
 	plan_point4.angular.x = 3.1415622780010195
 	plan_point4.angular.y = 0
-	plan_point4.angular.z = math.pi/4
+	plan_point4.angular.z = 1.5704225518
 	# add this point to the plan
 	plan.points.append(plan_point4)
 
