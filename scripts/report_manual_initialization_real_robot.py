@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	# initialize node
 	rospy.init_node('report_manual_initialization', anonymous = True)
 	# add publisher for sending joint position commands
-	pos_pub = rospy.Publisher('/pos_joint_traj_controller/command', JointTrajectory, queue_size = 10)
+	pos_pub = rospy.Publisher('/scaled_pos_joint_traj_controller/command', JointTrajectory, queue_size = 10)
 	# set frequency for loop
 	loop_rate = rospy.Rate(10)
 
