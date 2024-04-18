@@ -55,24 +55,24 @@ if __name__ == '__main__':
 			# define twist variable for first point 
 			plan_point1 = Twist()
 			# use rostopic echo /ur5e/toolpose to get linear and angular values
-			# for safe initial position 
-			plan_point1.linear.x = -0.7924762782588125
-			plan_point1.linear.y = -0.13300178332221238
-			plan_point1.linear.z = 0.36339685365301155
-			plan_point1.angular.x = 3.1415622780010195
-			plan_point1.angular.y = 0
-			plan_point1.angular.z = 1.5704225518606048
+			# for safe initial position FOR THE REAL ROBOT
+			plan_point1.linear.x = -0.01665031013035296
+			plan_point1.linear.y = -0.4060903126050968
+			plan_point1.linear.z = 0.42934662508780175
+			plan_point1.angular.x = 3.1261380387567526
+			plan_point1.angular.y = 0.01666427076882388
+			plan_point1.angular.z = 1.530762598303694
 			# add this point to the plan
 			plan.points.append(plan_point1)
 	
-			#define point about ball 
+			#define point above ball 
 			above_ball = Twist()
 			above_ball.linear.x = pt_in_base.point.x 
 			above_ball.linear.y = pt_in_base.point.y
-			above_ball.linear.z = 0.36339685365301155 
-			above_ball.angular.x = 3.1415622780010195
-			above_ball.angular.y = 0
-			above_ball.angular.z = 1.5704225518606048
+			above_ball.linear.z = 0.42934662508780175 
+			above_ball.angular.x = 3.1261380387567526
+			above_ball.angular.y = 0.01666427076882388
+			above_ball.angular.z = 1.530762598303694
 			plan.points.append(above_ball) 
 	
 			# move to ball 
@@ -80,34 +80,57 @@ if __name__ == '__main__':
 			on_ball.linear.x = pt_in_base.point.x 
 			on_ball.linear.y = pt_in_base.point.y
 			on_ball.linear.z = pt_in_base.point.z + 0.01
-			on_ball.angular.x = 3.1415622780010195
-			on_ball.angular.y = 0
-			on_ball.angular.z = 1.5704225518606048
+			on_ball.angular.x = 3.1261380387567526
+			on_ball.angular.y = 0.01666427076882388
+			on_ball.angular.z = 1.530762598303694
 			plan.points.append(on_ball) 
+			
+			# move straight back up  
+			above_ball_2 = Twist()
+			above_ball_2.linear.x = pt_in_base.point.x 
+			above_ball_2.linear.y = pt_in_base.point.y
+			above_ball_2.linear.z = 0.42934662508780175 
+			above_ball_2.angular.x = 3.1261380387567526
+			above_ball_2.angular.y = 0.01666427076882388
+			above_ball_2.angular.z = 1.530762598303694
+			plan.points.append(above_ball_2)
 
-			# define twist variable for third point
+			# define twist variable for next point
 			plan_point3 = Twist()
 			# define above the target position
-			plan_point3.linear.x = -0.6729824076546461
-			plan_point3.linear.y = -0.13300178332221238
-			plan_point3.linear.z = 0.36339685365301155
-			plan_point3.angular.x = 3.1415622780010195
-			plan_point3.angular.y = 0
-			plan_point3.angular.z = 1.5704225518
+			plan_point3.linear.x = 0.15
+			plan_point3.linear.y = -0.4060903126050968
+			plan_point3.linear.z = 0.42934662508780175
+			plan_point3.angular.x = 3.1261380387567526
+			plan_point3.angular.y = 0.01666427076882388
+			plan_point3.angular.z = 1.530762598303694
 			# add this point to the plan
 			plan.points.append(plan_point3)
 
-			# define twist variable for fourth point
+			# define twist variable for next point
 			plan_point4 = Twist()
 			# define a point as the target postion
-			plan_point4.linear.x = -0.6729824076546461
-			plan_point4.linear.y = -0.13300178332221238
-			plan_point4.linear.z = 0.1
-			plan_point4.angular.x = 3.1415622780010195
-			plan_point4.angular.y = 0
-			plan_point4.angular.z = 1.5704225518
+			plan_point4.linear.x = 0.15
+			plan_point4.linear.y = -0.4060903126050968
+			plan_point4.linear.z = pt_in_base.point.z + 0.01
+			plan_point4.angular.x = 3.1261380387567526
+			plan_point4.angular.y = 0.01666427076882388
+			plan_point4.angular.z = 1.530762598303694
 			# add this point to the plan
 			plan.points.append(plan_point4)
+			
+			# define twist variable for next point
+			plan_point5 = Twist()
+			# define a point as the target postion
+			plan_point5.linear.x = 0.15
+			plan_point5.linear.y = -0.4060903126050968
+			plan_point5.linear.z = 0.42934662508780175
+			plan_point5.angular.x = 3.1261380387567526
+			plan_point5.angular.y = 0.01666427076882388
+			plan_point5.angular.z = 1.530762598303694
+			# add this point to the plan
+			plan.points.append(plan_point5)
+			
 			# publish the plan
 			plan_pub.publish(plan)
 			# wait for 0.1 seconds until the next loop and repeat

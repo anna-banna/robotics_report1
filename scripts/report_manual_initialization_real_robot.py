@@ -34,15 +34,14 @@ if __name__ == '__main__':
 		pos_cmd_point.positions.append(0.0)
 	# set the ideal time to destination
 	pos_cmd_point.time_from_start = rospy.Duration(1.0) # here one second 
-	# change the value of the command for the second joint
-	pos_cmd_point.positions[1] = -math.pi/4
-	# change the value of the command for the elbow joint
-	pos_cmd_point.positions[0] = math.pi/4
 	
-	# change value of the command for the wrist joint 
-	pos_cmd_point.positions[3] = -math.pi/2
-	#change value of the command for the other wrist joint
-	pos_cmd_point.positions[4] = -math.pi/2
+	# manual initalization of the real robot as provider by Dr. Saeidi
+	pos_cmd_point.positions[0] = -1.47
+	pos_cmd_point.positions[1] = -1.79
+	pos_cmd_point.positions[2] = -1.28
+	pos_cmd_point.positions[3] = 1.71
+	pos_cmd_point.positions[4] = -1.58
+	pos_cmd_point.positions[5] = -1.24
 	
 	# add the trajectory point to command
 	pos_cmd.points.append(pos_cmd_point)
