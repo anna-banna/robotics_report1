@@ -125,7 +125,7 @@ if __name__ == '__main__':
 			above_ball = Twist()
 			above_ball_mode = UInt8()
 			above_ball.linear.x = pt_in_base.point.x 
-			above_ball.linear.y = pt_in_base.point.y
+			above_ball.linear.y = pt_in_base.point.y - 0.01
 			above_ball.linear.z = tooltip_pts.linear.z 
 			above_ball.angular.x = tooltip_pts.angular.x
 			above_ball.angular.y = tooltip_pts.angular.y
@@ -138,7 +138,7 @@ if __name__ == '__main__':
 			on_ball = Twist()
 			on_ball_mode = UInt8()
 			on_ball.linear.x = pt_in_base.point.x 
-			on_ball.linear.y = pt_in_base.point.y
+			on_ball.linear.y = pt_in_base.point.y - 0.01
 			on_ball.linear.z = pt_in_base.point.z + 0.01
 			on_ball.angular.x = tooltip_pts.angular.x
 			on_ball.angular.y = tooltip_pts.angular.y
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 			on_ball2 = Twist()
 			on_ball2_mode = UInt8()
 			on_ball2.linear.x = pt_in_base.point.x 
-			on_ball2.linear.y = pt_in_base.point.y
+			on_ball2.linear.y = pt_in_base.point.y - 0.01
 			on_ball2.linear.z = pt_in_base.point.z + 0.01
 			on_ball2.angular.x = tooltip_pts.angular.x
 			on_ball2.angular.y = tooltip_pts.angular.y
@@ -164,7 +164,7 @@ if __name__ == '__main__':
 			above_ball_2 = Twist()
 			above_ball_2_mode = UInt8()
 			above_ball_2.linear.x = pt_in_base.point.x 
-			above_ball_2.linear.y = pt_in_base.point.y
+			above_ball_2.linear.y = pt_in_base.point.y - 0.01
 			above_ball_2.linear.z = tooltip_pts.linear.z 
 			above_ball_2.angular.x = tooltip_pts.angular.x
 			above_ball_2.angular.y = tooltip_pts.angular.y
@@ -232,5 +232,5 @@ if __name__ == '__main__':
 				# publish the plan
 				plan_pub.publish(plan)
 				# wait for 0.1 seconds until the next loop and repeat
-				loop_rate.sleep()
+			loop_rate.sleep()
 
